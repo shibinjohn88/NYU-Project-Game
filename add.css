@@ -1,0 +1,58 @@
+body  {
+    background-image: url("./images/card-game-167051_960_720.jpg");
+    background-position: center;
+    background-repeat: repeat;
+    /* background-size: cover; */
+    
+
+    background-color: #cccccc;
+  }
+
+  .game {
+    min-height: fit-content;
+    width: 800px;
+    margin: auto
+  }
+
+  .score-board {
+    background-color:azure ;
+    min-height: 100px;
+    width: inherit ;
+    border-radius: 5px;
+  }
+
+  .game-board { 
+    background-color: azure;
+    min-height: 600px;
+    width: inherit;
+    margin-top: 5px;
+    border-radius: 5px;
+
+  }
+
+  img {
+    height: 100px;
+    width: auto;
+  }
+
+ .gameheading>h1 {
+  color: red;
+
+ }
+
+ .card-holder {
+  padding: 50px 200px
+ }
+
+button {
+  height: 50px;
+  width: 100px;
+  margin: 50px 200px;
+  background-color: rgb(8, 92, 92);
+  color:whitesmoke;
+  border-radius: 20px;
+}
+
+h3 {
+  color: brown;
+}
