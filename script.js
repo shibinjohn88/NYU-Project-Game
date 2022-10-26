@@ -3,6 +3,7 @@
 const card = {
     backImages: ["3_of_spades.png"],
     cardsSelected: [],
+    cardsMatched: [],
     
 }
 
@@ -40,41 +41,52 @@ function flipCard() {
     let cd = this
     if (cardsSelected.length < 2)
         {
+        cd.classList.toggle('flipcard')    
+        cd.removeEventListener('click', flipCard)
+        cd.style.cursor = 'default'
         cardsSelected.push(cd)
-        this.classList.toggle('flipcard')
-        // if (cardsSelected.length === 2) {
-        //     console.log(card.cardsSelected)
-        //     matchCard()
-        // }
+        
+        if (cardsSelected.length === 2) {
+            setTimeout(() => {
+                matchCard()
+              }, "0")
+           
+        }
 
         } 
-    // else {
-    //     console.log(card.cardsSelected)
-
-    //     }
     
 }
 
 function matchCard() {
     let cards = card.cardsSelected
-    console.log(cards[0].lastElementChild.querySelector('img').src)
+    let cardsMatched = card.cardsMatched
     let card1_Img = cards[0].lastElementChild.querySelector('img').src
     let card2_Img = cards[1].lastElementChild.querySelector('img').src
     if (card1_Img === card2_Img) {
         console.log('match')
-        // cards[1].classList.add('flipcard')
-        // cards.pop()
-        // cards[0].classList.add('flipcard')
-        // cards.pop()
+        cards[1].classList.add('flipcard')
+        cardsMatched.push(cards.pop())
+        cards[0].classList.add('flipcard')
+        cardsMatched.push(cards.pop())
     }
     else {
         console.log('no match')
-        // cards[0].classList.toggle('flipcard')
-        // cards[1].classList.toggle('flipcard')
-        // cards.pop()
-        // cards.pop()
+        setTimeout(() => {
+            cards[0].classList.toggle('flipcard')
+        cards[0].addEventListener('click', flipCard)
+        cards[0].style.cursor = 'pointer'
+        cards[1].classList.toggle('flipcard')
+        cards[1].addEventListener('click', flipCard)
+        cards[1].style.cursor = 'pointer'
+        cards.pop()
+        cards.pop()
+          }, "300")
+        
     }
+    console.log(cardsMatched.length)
 }
+
+
 
 
 
