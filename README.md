@@ -19,5 +19,14 @@ UI
 
 -> Score board, game board, game controls
 
-start
--> when start button is clicked cards should be added to the game board
+Game Working Model
+-> when play button is clicked cards should be added to the game board
+-> cards flip when clicked
+-> only two cards can be flipped at a time
+-> add the two cards to an array
+-> compare the cards in the array for a match
+-> if the cards match keep the cards flipped and disable the click
+-> if cards didn't match flip back the cards to original position
+-> need a counter to track number of flips and if exceeds allowed flips game over player lost the game.
+-> need a counter for time
+-> check all cards are flipped to win the game 
