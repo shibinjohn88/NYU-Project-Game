@@ -1,6 +1,6 @@
 # NYU-Project-Game
 
-Memory game using cards that can be flipped and make pairs.
+Memory game using cards that can be flipped and make identical pairs. A fun card game to boost your memory.
 
 
 
@@ -8,7 +8,7 @@ Memory game using cards that can be flipped and make pairs.
 -> each card can be clicked to make it flip and show back side
 -> if pairs are clicked consecutively score point and cards should be kept open
 -> there should be a count down for moves 
--> if the player makes all pairs within the time player wins.
+-> if the player makes all pairs within the allowed moves player wins.
 
 Extra Features
 

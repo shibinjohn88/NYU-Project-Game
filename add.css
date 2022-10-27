@@ -13,21 +13,29 @@ body  {
   }
 
   .score-board {
-    background-color: azure;
+    background-image:  url("./images/wood_background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100px;
     width: inherit ;
     border-radius: 5px;
   }
 
   .game-board { 
-    background-color: azure;
+    /* background-color: azure; */
     min-height: 600px;
     width: inherit;
     margin-top: 5px;
     border-radius: 5px;
+    background-image:  url("./images/table_cover.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
   }
 
+  /*css code for card flip adopted from w3 schools*/
   .card {
     height: 100px;
     width: 70px;
@@ -78,7 +86,10 @@ button {
 }
 
 h3 {
-  color: brown;
+  color: whitesmoke;
+  display: inline-block;
+  margin-left: 10px;
+  
 }
 
 .flipcard {

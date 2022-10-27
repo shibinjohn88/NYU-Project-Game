@@ -81,9 +81,7 @@ function flipCard() {
         console.log(card.moves)
         
         if (cardsSelected.length === 2) {
-            setTimeout(() => {
-                matchCard()
-              }, "0")
+            matchCard()
            
         }
 
