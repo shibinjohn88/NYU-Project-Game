@@ -6,22 +6,24 @@ const card = {
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png"],
     cardsSelected: [],
     cardsMatched: [],
-    moves: 0, 
-    shuffledBackImages: []
+    pendingMoves: 200, 
+    shuffledBackImages: [],
+    time: 0
 
 }
 
 
-
 //event listener for play button
-let playButton = document.querySelector("#play")
+const playButton = document.querySelector("#play")
 playButton.addEventListener('click', addCards)
 
 function addCards() {
-    let cardHolder = document.getElementById('card-holder')
+    const cardHolder = document.getElementById('card-holder')
     cardHolder.innerHTML = ''
     cardHolder.classList.remove('card-holder')
     card.shuffledBackImages = shuffle(card.backImages)
+    pendingMoves = document.querySelector('#moves')
+    pendingMoves.innerHTML = `${card.pendingMoves}`
     for (let i=0; i < 20; i++) {
         let card = document.createElement('div')
         card.addEventListener('click', flipCard)
@@ -35,6 +37,7 @@ function addCards() {
     //remove event listener from play button once cards are added to the card holder
     playButton.style.cursor = 'default'
     playButton.removeEventListener('click', addCards)
+    gameStart()
 }
 
 //shuffle an array randomly adopted from stackoverflow
@@ -60,13 +63,6 @@ function getBackImage(i) {
    return imageArray[i]
 }
 
-//shuffle array randomly
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
 
 function flipCard() {
     let cardsSelected = card.cardsSelected
@@ -77,17 +73,18 @@ function flipCard() {
         cd.removeEventListener('click', flipCard)
         cd.style.cursor = 'default'
         cardsSelected.push(cd)
-        card.moves += 1
-        console.log(card.moves)
+        card.pendingMoves -= 1
+        pendingMoves = document.querySelector('#moves')
+        pendingMoves.innerHTML = `${card.pendingMoves}`
         
         if (cardsSelected.length === 2) {
             matchCard()
-           
-        }
-
         } 
+       }
     
-}
+       }
+            
+ 
 
 function matchCard() {
     let cards = card.cardsSelected
@@ -115,6 +112,14 @@ function matchCard() {
     }
 }
 
+function gameStart() {
+    
+    const timeElement = document.querySelector('#time')
+    setInterval(function () {
+        card.time ++
+        timeElement.innerHTML = `${card.time} seconds`
+    }, 1000)
+}
 
 
 
