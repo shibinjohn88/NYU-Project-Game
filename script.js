@@ -6,7 +6,7 @@ const card = {
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png"],
     cardsSelected: [],
     cardsMatched: [],
-    pendingMoves: 200, 
+    pendingMoves: 100, 
     shuffledBackImages: [],
     time: 0
 
@@ -69,20 +69,20 @@ function flipCard() {
     let cd = this
     if (cardsSelected.length < 2)
         {
-        cd.classList.toggle('flipcard')    
-        cd.removeEventListener('click', flipCard)
-        cd.style.cursor = 'default'
-        cardsSelected.push(cd)
-        card.pendingMoves -= 1
-        pendingMoves = document.querySelector('#moves')
-        pendingMoves.innerHTML = `${card.pendingMoves}`
+            cd.classList.toggle('flipcard')    
+            cd.removeEventListener('click', flipCard)
+            cd.style.cursor = 'default'
+            cardsSelected.push(cd)
+            card.pendingMoves -= 1
+            pendingMoves = document.querySelector('#moves')
+            pendingMoves.innerHTML = `${card.pendingMoves}`
         
-        if (cardsSelected.length === 2) {
-            matchCard()
-        } 
+            if (cardsSelected.length === 2) {
+                matchCard()
+            } 
        }
     
-       }
+}
             
  
 
@@ -117,7 +117,7 @@ function gameStart() {
     const timeElement = document.querySelector('#time')
     setInterval(function () {
         card.time ++
-        timeElement.innerHTML = `${card.time} seconds`
+        timeElement.innerHTML = `${Math.floor(card.time/3600)}:${Math.floor((card.time%3600)/60)}:${(card.time%3600)%60}`
     }, 1000)
 }
 
