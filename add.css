@@ -77,11 +77,12 @@ body  {
 button {
   height: 50px;
   width: 100px;
-  margin: 50px 200px;
+  margin: 50px 100px;
   background-color: rgb(8, 92, 92);
   color:whitesmoke;
   border-radius: 20px;
   cursor: pointer;
+  display: inline-block;
 }
 
 h3 {
