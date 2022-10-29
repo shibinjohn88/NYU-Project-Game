@@ -77,8 +77,8 @@ body  {
 button {
   height: 50px;
   width: 100px;
-  margin: 50px 100px;
-  background-color: rgb(8, 92, 92);
+  margin: 50px 145px;
+  background-color: rgb(199, 54, 54);
   color:whitesmoke;
   border-radius: 20px;
   cursor: pointer;
@@ -89,14 +89,17 @@ h3 {
   color: whitesmoke;
   display: inline-block;
   margin-left: 10px;
-  
 }
+  
 
 .flipcard {
   transform: rotateY(180deg);
 }
 
 .card-holder {
-  font-size: 30px;
-  text-align: center;
+  font-size: 25px;
+}
+
+h2 {
+  font-size: 25px;
 }

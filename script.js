@@ -8,7 +8,8 @@ const game = {
     cardsMatched: [],
     pendingMoves: 100, 
     shuffledBackImages: [],
-    time: 0
+    time: 0,
+    timeInterval: 0
 
 }
 
@@ -16,6 +17,10 @@ const game = {
 //event listener for play button
 const playButton = document.querySelector("#play")
 playButton.addEventListener('click', addCards)
+
+//event listenet for quit button
+const quitButton = document.querySelector("#quit")
+
 
 function addCards() {
     const cardHolder = document.getElementById('card-holder')
@@ -37,11 +42,16 @@ function addCards() {
     //remove event listener from play button once cards are added to the card holder
     playButton.style.cursor = 'default'
     playButton.removeEventListener('click', addCards)
+    quitButton.addEventListener('click', quitGame)
     gameStart()
 }
 
 //shuffle an array randomly adopted from stackoverflow
-function shuffle(array) {
+function shuffle(ar) {
+    let array = []
+    for (i = 0; i < ar.length; i++) {
+        array.push(ar[i])
+      }
     let currentIndex = array.length, randomIndex;
     // While there remain elements to shuffle.
     while (currentIndex != 0) {
@@ -124,7 +134,7 @@ function matchCard() {
 function gameStart() {
     
     const timeElement = document.querySelector('#time')
-    setInterval(function () {
+    game.timeInterval = setInterval(function () {
         game.time ++
         timeElement.innerHTML = `${Math.floor(game.time/3600)}:${Math.floor((game.time%3600)/60)}:${(game.time%3600)%60}`
     }, 1000)
@@ -133,8 +143,8 @@ function gameStart() {
 
 function gameWon() {
     const cardHolder = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h3>Congratulations You won the game. To play again click play button.</h3>`
-    // gameRestart()
+    cardHolder.innerHTML = `<h2>Congratulations You won the game. To play again click play button.</h2>`
+    gameRestart()
 }
 
 function clearArray(array) {
@@ -143,20 +153,28 @@ function clearArray(array) {
     }
   }
 
-// function gameRestart() {
-//     clearArray(game.cardsMatched)
-//     clearArray(game.cardsSelected)
-//     clearArray(game.shuffledBackImages)
-//     game.pendingMoves = 100
-//     game.time = 0
-//     setTimeout(() => {
-//         playButton.style.cursor = 'pointer'
-//         playButton.addEventListener('click', addCards)
-//     })
-// }
+function gameRestart() {
+    clearArray(game.cardsMatched)
+    clearArray(game.cardsSelected)
+    clearArray(game.shuffledBackImages)
+    game.pendingMoves = 100
+    game.time = 0
+    clearInterval(game.timeInterval)
+    setTimeout(() => {
+        playButton.style.cursor = 'pointer'
+        playButton.addEventListener('click', addCards)
+    })
+}
 
 function gameOver() {
     const cardHolder = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h3>Sorry you lost the game. To play again click play button.</h3>`
-    // gameRestart()
+    cardHolder.innerHTML = `<h2>Sorry you lost the game. To play again click play button.</h2>`
+    gameRestart()
 }
+
+function quitGame() {
+    const cardHolder = document.getElementById('card-holder')
+    cardHolder.innerHTML = `<h2>To restart the game click the play button.</h2>`
+    gameRestart()
+}
+
