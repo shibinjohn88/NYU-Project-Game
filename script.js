@@ -18,7 +18,7 @@ const game = {
 const playButton = document.querySelector("#play")
 playButton.addEventListener('click', addCards)
 
-//event listenet for quit button
+//event listener for quit button
 const quitButton = document.querySelector("#quit")
 
 
@@ -136,14 +136,16 @@ function gameStart() {
     const timeElement = document.querySelector('#time')
     game.timeInterval = setInterval(function () {
         game.time ++
-        timeElement.innerHTML = `${Math.floor(game.time/3600)}:${Math.floor((game.time%3600)/60)}:${(game.time%3600)%60}`
+        timeElement.innerHTML = `${Math.floor(game.time/3600).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
+        ${Math.floor((game.time%3600)/60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
+        ${((game.time%3600)%60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`
     }, 1000)
 }
 
 
 function gameWon() {
     const cardHolder = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h2>Congratulations You won the game. To play again click play button.</h2>`
+    cardHolder.innerHTML = `<h2>Congratulations! You won the game. To play again click play button.</h2>`
     gameRestart()
 }
 
@@ -174,7 +176,7 @@ function gameOver() {
 
 function quitGame() {
     const cardHolder = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h2>To restart the game click the play button.</h2>`
+    cardHolder.innerHTML = `<h2>To restart the game click play button.</h2>`
     gameRestart()
 }
 
