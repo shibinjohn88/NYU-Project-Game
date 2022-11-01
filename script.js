@@ -10,8 +10,8 @@ const game = {
     shuffledBackImages: [],
     time: 0,
     timeInterval: 0
-
 }
+
 
 
 //event listener for play button
@@ -21,7 +21,7 @@ playButton.addEventListener('click', addCards)
 //event listener for quit button
 const quitButton = document.querySelector("#quit")
 
-
+//add cards to card holder
 function addCards() {
     const cardHolder = document.getElementById('card-holder')
     cardHolder.innerHTML = ''
@@ -67,13 +67,13 @@ function shuffle(ar) {
       return array;
     }
   
-
+//pick an image from the shuffled image array
 function getBackImage(i) {
    let imageArray = game.shuffledBackImages
    return imageArray[i]
 }
 
-
+//flip cards 
 function flipCard() {
     let cardsSelected = game.cardsSelected
     let cd = this
@@ -101,7 +101,7 @@ function flipCard() {
              
   
 
-
+//match selected cards
 function matchCard() {
     let cards = game.cardsSelected
     let cardsMatched = game.cardsMatched
@@ -131,6 +131,7 @@ function matchCard() {
     }
 }
 
+//start a timer when game start
 function gameStart() {
     
     const timeElement = document.querySelector('#time')
@@ -142,19 +143,21 @@ function gameStart() {
     }, 1000)
 }
 
-
+//when a game is won display message and restart the game
 function gameWon() {
     const cardHolder = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>Congratulations! You won the game. To play again click play button.</h2>`
     gameRestart()
 }
 
+//function to clear an array
 function clearArray(array) {
     while(array.length) {
       array.shift(); 
     }
   }
 
+//game restart reset all counters in game
 function gameRestart() {
     clearArray(game.cardsMatched)
     clearArray(game.cardsSelected)
@@ -168,12 +171,14 @@ function gameRestart() {
     })
 }
 
+//game over display message and restart game
 function gameOver() {
     const cardHolder = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>Sorry you lost the game. To play again click play button.</h2>`
     gameRestart()
 }
 
+//quit the game and display message
 function quitGame() {
     const cardHolder = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>To restart the game click play button.</h2>`

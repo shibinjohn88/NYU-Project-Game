@@ -22,7 +22,6 @@ body  {
   }
 
   .game-board { 
-    /* background-color: azure; */
     min-height: 600px;
     width: inherit;
     margin-top: 5px;
@@ -31,8 +30,8 @@ body  {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-
   }
+
 
   /*css code for card flip adopted from w3 schools*/
   .card {
@@ -67,6 +66,7 @@ body  {
 
  .gameheading>h1 {
   color: red;
+  font-size: 40px;
 
  }
 
