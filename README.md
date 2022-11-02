@@ -1,33 +1,26 @@
-# NYU-Project-Game
+# Memory Card Game
 
-Memory game using cards that can be flipped and make identical pairs. A fun card game to boost your memory.
+Memory game using playing cards that can be flipped and make identical pairs. This game is developed for the elderly to improve memory and mental health.
 
-How to play the game
--> cards will be randomly arranged in the table.
--> there will be 10 pairs of identical cards
--> each card can be flipped by clicking on it. when identical cards are selected consecutively the cards will be kept open
--> open all cards to win the game.
+# How to play the game
+
+-> Cards will be randomly arranged on the game board.
+-> There will be 10 pairs of identical cards.
+-> Each card can be flipped by clicking on it. When identical cards are selected consecutively the cards will be kept open otherwise cards will flip back to their original state.
+-> Open all cards on the board to win the game.
 -> only 100 moves are allowed and each pick will be counted as one move.
+-> Timer will show you the time you took to finish the game.
 
 
-Game Design
+# Future Project
 
--> when game starts there should be a game board and cards randomly arranged in the board
--> each card can be clicked to make it flip and show back side
--> if pairs are clicked consecutively score point and cards should be kept open
--> there should be a count down for moves 
--> if the player makes all pairs within the allowed moves player wins.
-
-Extra Features
-
--> add more cards to make it more complex for each level 
+-> add sound to the game.
+-> save the status of the game based on player.
+-> show highest score and player.
+-> add more levels to the game with more cards and less moves. 
 
 
-UI 
-
--> Score board, game board, game controls
-
-Game Development Model
+# Game Development Model
 
 -> when play button is clicked cards should be added to the game board
 -> cards flip when clicked
