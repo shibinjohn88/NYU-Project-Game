@@ -1,0 +1,83 @@
+@import "add";
+$heading-color: #e0f803;
+$heading-size: 60px;
+$background-img: url("./images/background.jpg");
+
+
+.game {
+
+    min-height: fit-content;
+    width: 800px;
+    margin: auto;
+
+    .gameheading {
+        h1 {
+            color: $heading-color;
+            font-size: $heading-size;
+        }
+    }
+    .score-board {
+        background-image:  url("./images/wood_background.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        min-height: 100px;
+        width: inherit ;
+        border-radius: 5px;
+    }
+
+    .game-board { 
+        min-height: 600px;
+        width: inherit;
+        margin-top: 5px;
+        border-radius: 5px;
+        background-image:  url("./images/table_cover.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        
+        #card-holder {
+            padding: 50px 200px
+        }
+
+        .card-holder {
+            font-size: 25px;
+        }
+
+        button {
+            height: 50px;
+            width: 100px;
+            margin: 50px 145px;
+            background-color: rgb(22, 1, 1);
+            color:whitesmoke;
+            border-radius: 20px;
+            border-color: silver;
+            border-width: 3px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+    }
+    
+}
+
+@mixin card-face {
+    position: absolute;
+    border-radius: 5px;
+    width: inherit;
+    height: inherit;
+    backface-visibility: hidden;
+}
+
+.front-face {
+    @include card-face;
+}
+
+.back-face {
+    @include card-face;
+    transform: rotateY(180deg);
+}
+
+
+
+
