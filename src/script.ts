@@ -1,6 +1,6 @@
 
 
-const game = {
+const game: {backImages: string[], cardsSelected: Element [] | null [], cardsMatched: Element [] | null [], pendingMoves: number, shuffledBackImages: string[], time: number, timeInterval: number} = {
     backImages: ["jack_of_hearts2.png", "jack_of_spades2.png", "king_of_clubs2.png", "king_of_diamonds2.png", "king_of_hearts2.png", "king_of_spades2.png", "queen_of_clubs2.png",
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_clubs2.png", "king_of_diamonds2.png", "king_of_hearts2.png", "king_of_spades2.png", "queen_of_clubs2.png",
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png"],
@@ -15,19 +15,19 @@ const game = {
 
 
 //event listener for play button
-const playButton = document.querySelector("#play")
+const playButton: Element | null = document.querySelector("#play")
 playButton.addEventListener('click', addCards)
 
 //event listener for quit button
-const quitButton = document.querySelector("#quit")
+const quitButton: Element | null = document.querySelector("#quit")
 
 //add cards to card holder
 function addCards() {
-    const cardHolder = document.getElementById('card-holder')
+    const cardHolder: Element | null = document.getElementById('card-holder')
     cardHolder.innerHTML = ''
     cardHolder.classList.remove('card-holder')
     game.shuffledBackImages = shuffle(game.backImages)
-    pendingMoves = document.querySelector('#moves')
+    let pendingMoves: Element | null = document.querySelector('#moves')
     pendingMoves.innerHTML = `${game.pendingMoves}`
     for (let i=0; i < 20; i++) {
         let card = document.createElement('div')
@@ -47,9 +47,9 @@ function addCards() {
 }
 
 //shuffle an array randomly adopted from stackoverflow
-function shuffle(ar) {
-    let array = []
-    for (i = 0; i < ar.length; i++) {
+function shuffle(ar: string[]):string[] {
+    let array:string[] = []
+    for (let i = 0; i < ar.length; i++) {
         array.push(ar[i])
       }
     let currentIndex = array.length, randomIndex;
@@ -68,7 +68,7 @@ function shuffle(ar) {
     
   
 //pick an image from the shuffled image array
-function getBackImage(i) {
+function getBackImage(i: number):string {
    let imageArray = game.shuffledBackImages
    return imageArray[i]
 }
@@ -84,7 +84,7 @@ function flipCard() {
             cd.style.cursor = 'default'
             cardsSelected.push(cd)
             game.pendingMoves -= 1
-            pendingMoves = document.querySelector('#moves')
+            let pendingMoves:Element | null = document.querySelector('#moves')
             pendingMoves.innerHTML = `${game.pendingMoves}`
             if (game.pendingMoves === 0) {
                 gameOver()
@@ -93,7 +93,7 @@ function flipCard() {
             if (cardsSelected.length === 2) {
                setTimeout(()=> {
                  matchCard()
-                }, "300") 
+                }, 300) 
              } 
         }
     }
@@ -118,7 +118,7 @@ function matchCard() {
     }
     else {
         setTimeout(() => {
-            cards[0].classList.toggle('flipcard')
+        cards[0].classList.toggle('flipcard')
         cards[0].addEventListener('click', flipCard)
         cards[0].style.cursor = 'pointer'
         cards[1].classList.toggle('flipcard')
@@ -126,7 +126,7 @@ function matchCard() {
         cards[1].style.cursor = 'pointer'
         cards.pop()
         cards.pop()
-          }, "300")
+          }, 300)
         
     }
 }
@@ -134,7 +134,7 @@ function matchCard() {
 //start a timer when game start
 function gameStart() {
     
-    const timeElement = document.querySelector('#time')
+    const timeElement:Element | null = document.querySelector('#time')
     game.timeInterval = setInterval(function () {
         game.time ++
         timeElement.innerHTML = `${Math.floor(game.time/3600).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
@@ -145,13 +145,13 @@ function gameStart() {
 
 //when a game is won display message and restart the game
 function gameWon() {
-    const cardHolder = document.getElementById('card-holder')
+    const cardHolder:Element | null = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>Congratulations! You won the game. To play again click play button.</h2>`
     gameRestart()
 }
 
 //function to clear an array
-function clearArray(array) {
+function clearArray<Type>(array: Type[]):void {
     while(array.length) {
       array.shift(); 
     }
@@ -173,14 +173,14 @@ function gameRestart() {
 
 //game over display message and restart game
 function gameOver() {
-    const cardHolder = document.getElementById('card-holder')
+    const cardHolder: Element | null = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>Sorry you lost the game. To play again click play button.</h2>`
     gameRestart()
 }
 
 //quit the game and display message
 function quitGame() {
-    const cardHolder = document.getElementById('card-holder')
+    const cardHolder: Element | null = document.getElementById('card-holder')
     cardHolder.innerHTML = `<h2>To restart the game click play button.</h2>`
     gameRestart()
 }

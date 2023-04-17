@@ -39,6 +39,7 @@ h2 {
 }
 
 .game {
+  min-height: -moz-fit-content;
   min-height: fit-content;
   width: 800px;
   margin: auto;
@@ -100,6 +101,4 @@ h2 {
   height: inherit;
   backface-visibility: hidden;
   transform: rotateY(180deg);
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,23 @@
+{
+  "name": "nyu-project-game",
+  "version": "1.0.0",
+  "description": "project memory game",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shibinjohn88/NYU-Project-Game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shibinjohn88/NYU-Project-Game/issues"
+  },
+  "homepage": "https://github.com/shibinjohn88/NYU-Project-Game#readme",
+  "dependencies": {
+    "typescript": "^5.0.4"
+  }
+}
