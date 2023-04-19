@@ -1,6 +1,6 @@
 
 
-const game: {backImages: string[], cardsSelected: Element [] | null [], cardsMatched: Element [] | null [], pendingMoves: number, shuffledBackImages: string[], time: number, timeInterval: number} = {
+const game: {backImages: string[], cardsSelected: (Element|null) [], cardsMatched: (Element|null) [], pendingMoves: number, shuffledBackImages: string[], time: number, timeInterval: number} = {
     backImages: ["jack_of_hearts2.png", "jack_of_spades2.png", "king_of_clubs2.png", "king_of_diamonds2.png", "king_of_hearts2.png", "king_of_spades2.png", "queen_of_clubs2.png",
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png", "jack_of_hearts2.png", "jack_of_spades2.png", "king_of_clubs2.png", "king_of_diamonds2.png", "king_of_hearts2.png", "king_of_spades2.png", "queen_of_clubs2.png",
      "queen_of_diamonds2.png", "queen_of_hearts2.png", "queen_of_spades2.png"],
@@ -15,8 +15,8 @@ const game: {backImages: string[], cardsSelected: Element [] | null [], cardsMat
 
 
 //event listener for play button
-const playButton: Element | null = document.querySelector("#play")
-playButton.addEventListener('click', addCards)
+const playButton: any = document.querySelector("#play") 
+playButton!.addEventListener('click', addCards)
 
 //event listener for quit button
 const quitButton: Element | null = document.querySelector("#quit")
@@ -24,11 +24,11 @@ const quitButton: Element | null = document.querySelector("#quit")
 //add cards to card holder
 function addCards() {
     const cardHolder: Element | null = document.getElementById('card-holder')
-    cardHolder.innerHTML = ''
-    cardHolder.classList.remove('card-holder')
+    cardHolder!.innerHTML = ''
+    cardHolder!.classList.remove('card-holder')
     game.shuffledBackImages = shuffle(game.backImages)
     let pendingMoves: Element | null = document.querySelector('#moves')
-    pendingMoves.innerHTML = `${game.pendingMoves}`
+    pendingMoves!.innerHTML = `${game.pendingMoves}`
     for (let i=0; i < 20; i++) {
         let card = document.createElement('div')
         card.addEventListener('click', flipCard)
@@ -37,12 +37,12 @@ function addCards() {
         card.innerHTML = `
         <div class="front-face"><img src="./images/card-face.png"></div>
         <div class="back-face"><img src=./images/${backFace}></div>`
-        cardHolder.appendChild(card)
+        cardHolder!.appendChild(card)
     }
     //remove event listener from play button once cards are added to the card holder
-    playButton.style.cursor = 'default'
-    playButton.removeEventListener('click', addCards)
-    quitButton.addEventListener('click', quitGame)
+    playButton!.style.cursor = 'default'
+    playButton!.removeEventListener('click', addCards)
+    quitButton!.addEventListener('click', quitGame)
     gameStart()
 }
 
@@ -74,9 +74,9 @@ function getBackImage(i: number):string {
 }
 
 //flip cards 
-function flipCard() {
+function flipCard(this: any) {
     let cardsSelected = game.cardsSelected
-    let cd = this
+    let cd: any = this
     if (cardsSelected.length < 2)
         {
             cd.classList.toggle('flipcard')    
@@ -85,7 +85,7 @@ function flipCard() {
             cardsSelected.push(cd)
             game.pendingMoves -= 1
             let pendingMoves:Element | null = document.querySelector('#moves')
-            pendingMoves.innerHTML = `${game.pendingMoves}`
+            pendingMoves!.innerHTML = `${game.pendingMoves}`
             if (game.pendingMoves === 0) {
                 gameOver()
             }
@@ -103,14 +103,14 @@ function flipCard() {
 
 //match selected cards
 function matchCard() {
-    let cards = game.cardsSelected
+    let cards: any = game.cardsSelected
     let cardsMatched = game.cardsMatched
-    let card1_Img = cards[0].lastElementChild.querySelector('img').src
-    let card2_Img = cards[1].lastElementChild.querySelector('img').src
+    let card1_Img = cards[0]!.lastElementChild.querySelector('img').src
+    let card2_Img = cards[1]!.lastElementChild.querySelector('img').src
     if (card1_Img === card2_Img) {
-        cards[1].classList.add('flipcard')
+        cards[1]!.classList.add('flipcard')
         cardsMatched.push(cards.pop())
-        cards[0].classList.add('flipcard')
+        cards[0]!.classList.add('flipcard')
         cardsMatched.push(cards.pop())
         if (cardsMatched.length === 20) {
             gameWon()
@@ -118,12 +118,12 @@ function matchCard() {
     }
     else {
         setTimeout(() => {
-        cards[0].classList.toggle('flipcard')
-        cards[0].addEventListener('click', flipCard)
-        cards[0].style.cursor = 'pointer'
-        cards[1].classList.toggle('flipcard')
-        cards[1].addEventListener('click', flipCard)
-        cards[1].style.cursor = 'pointer'
+        cards[0]!.classList.toggle('flipcard')
+        cards[0]!.addEventListener('click', flipCard)
+        cards[0]!.style.cursor = 'pointer'
+        cards[1]!.classList.toggle('flipcard')
+        cards[1]!.addEventListener('click', flipCard)
+        cards[1]!.style.cursor = 'pointer'
         cards.pop()
         cards.pop()
           }, 300)
@@ -137,7 +137,7 @@ function gameStart() {
     const timeElement:Element | null = document.querySelector('#time')
     game.timeInterval = setInterval(function () {
         game.time ++
-        timeElement.innerHTML = `${Math.floor(game.time/3600).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
+        timeElement!.innerHTML = `${Math.floor(game.time/3600).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
         ${Math.floor((game.time%3600)/60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}:
         ${((game.time%3600)%60).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}`
     }, 1000)
@@ -146,7 +146,7 @@ function gameStart() {
 //when a game is won display message and restart the game
 function gameWon() {
     const cardHolder:Element | null = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h2>Congratulations! You won the game. To play again click play button.</h2>`
+    cardHolder!.innerHTML = `<h2>Congratulations! You won the game. To play again click play button.</h2>`
     gameRestart()
 }
 
@@ -167,21 +167,21 @@ function gameRestart() {
     clearInterval(game.timeInterval)
     setTimeout(() => {
         playButton.style.cursor = 'pointer'
-        playButton.addEventListener('click', addCards)
+        playButton!.addEventListener('click', addCards)
     })
 }
 
 //game over display message and restart game
 function gameOver() {
     const cardHolder: Element | null = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h2>Sorry you lost the game. To play again click play button.</h2>`
+    cardHolder!.innerHTML = `<h2>Sorry you lost the game. To play again click play button.</h2>`
     gameRestart()
 }
 
 //quit the game and display message
 function quitGame() {
     const cardHolder: Element | null = document.getElementById('card-holder')
-    cardHolder.innerHTML = `<h2>To restart the game click play button.</h2>`
+    cardHolder!.innerHTML = `<h2>To restart the game click play button.</h2>`
     gameRestart()
 }
 
