@@ -2,6 +2,8 @@
 
 Memory game using playing cards that can be flipped and make identical pairs. This game is developed for the elderly to improve memory and mental health.
 
+* https://shibinjohn88.github.io/NYU-Project-Game/
+
 # How to play the game
 
 * Cards will be randomly arranged on the game board.
